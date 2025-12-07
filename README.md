@@ -1,3 +1,5 @@
+> **Archived** — Kept for reference. Not part of the current portfolio.
+
 # Modal Manager
 
 [![npm version](https://img.shields.io/npm/v/@idirdev/modal-manager)](https://www.npmjs.com/package/@idirdev/modal-manager)
