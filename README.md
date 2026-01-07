@@ -208,3 +208,22 @@ function StackDemo() {
 ## License
 
 MIT
+
+---
+
+## 🇫🇷 Documentation en français
+
+### Description
+**Modal Manager** est une bibliothèque légère de gestion de modales pour applications web. Elle permet d'empiler, de gérer et de contrôler des boîtes de dialogue de manière programmatique, avec support de l'accessibilité et des événements du clavier.
+
+### Installation
+```bash
+npm install @idirdev/modal-manager
+```
+
+### Utilisation
+```typescript
+import { ModalManager } from "@idirdev/modal-manager";
+const manager = new ModalManager();
+manager.open("confirm", { message: "Confirmer ?" });
+```
