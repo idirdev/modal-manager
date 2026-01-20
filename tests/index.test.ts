@@ -80,3 +80,53 @@ describe('getDrawerSize', () => {
     });
   });
 });
+
+describe('getDrawerSize - edge cases', () => {
+  it('unknown size falls back to md for horizontal', () => {
+    expect(getDrawerSize('unknown' as any, 'left')).toBe('380px');
+  });
+
+  it('xl is wider than lg for horizontal', () => {
+    const xl = parseInt(getDrawerSize('xl', 'left'));
+    const lg = parseInt(getDrawerSize('lg', 'left'));
+    expect(xl).toBeGreaterThan(lg);
+  });
+
+  it('md is wider than sm for horizontal', () => {
+    const md = parseInt(getDrawerSize('md', 'right'));
+    const sm = parseInt(getDrawerSize('sm', 'right'));
+    expect(md).toBeGreaterThan(sm);
+  });
+
+  it('xl is taller than lg for vertical', () => {
+    const xl = parseInt(getDrawerSize('xl', 'top'));
+    const lg = parseInt(getDrawerSize('lg', 'top'));
+    expect(xl).toBeGreaterThan(lg);
+  });
+
+  it('full returns 100vh for top position', () => {
+    expect(getDrawerSize('full', 'top')).toBe('100vh');
+  });
+
+  it('full returns 100vh for bottom position', () => {
+    expect(getDrawerSize('full', 'bottom')).toBe('100vh');
+  });
+
+  it('all horizontal sizes are pixel values except full', () => {
+    for (const size of ['sm', 'md', 'lg', 'xl'] as const) {
+      expect(getDrawerSize(size, 'left')).toMatch(/\d+px/);
+    }
+  });
+});
+
+describe('getStackZIndex - extra', () => {
+  it('depth 5 returns correct value', () => {
+    expect(getStackZIndex(5)).toBe(9050);
+  });
+  it('depth 0 returns base z-index', () => {
+    expect(getStackZIndex(0)).toBe(9000);
+  });
+  it('each depth adds 10', () => {
+    expect(getStackZIndex(2) - getStackZIndex(1)).toBe(10);
+  });
+});
